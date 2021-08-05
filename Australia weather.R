@@ -1,0 +1,214 @@
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("broom", type="binary")
+library(lubridate)
+library(tidyverse)
+library(readxl)
+weather <- read.csv("d:/R data folder/weatherAUS.csv")
+View(weather)
+#maximum temperature in Australia
+max(!is.na(weather$MaxTemp))
+is.na(weather$MaxTemp)
+str(weather)
+max(weather$MaxTemp)
+?is.na()
+c <-  na.omit(weather$MaxTemp)
+weather$Date <- as.Date(weather$Date)
+weather$year <- year(weather$Date)
+weather$month <- months(weather$Date)
+!is.na()
+c <- omit
+View(c)
+max(weather$Date)
+max(c)
+
+weather %>% filter(Location == "Albury") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point()
+
+mean(c)
+str(weather)
+weather %>% ggplot(aes(Location, color = Location, fill = Location)) + geom_bar()
+
+unique(weather$Location)
+
+sydney_weather <- weather %>% filter(Location == "Sydney") 
+View(sydney_weather)
+
+max(na.omit(sydney_weather$MaxTemp))
+
+
+
+
+sydney_weather %>% filter(MaxTemp == 45.8)
+
+sydney_weather %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() 
+
+min(sydney_weather$Date)
+max(sydney_weather$Date)
+str(sydney_weather)
+
+sydney_weather %>% filter(Date < "2009-01-01") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + 
+  ggtitle("Temperature in Sydney for year 2008")
+
+sydney_weather %>% filter(Date < "2010-01-01") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + 
+  ggtitle("Temperature in Sydney for year 2009")
+
+
+sydney_weather %>% filter(Date < "2011-01-01") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + 
+  ggtitle("Temperature in Sydney for year 2010")
+ 
+
+
+sydney_weather$Date <- as.Date(sydney_weather$Date)
+str(sydney_weather)
+library(lubridate)
+sydney_weather$year <- year(sydney_weather$Date)
+View(sydney_weather)
+sydney_weather$month <- months(sydney_weather$Date)
+sydney_
+sydney_weather  %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + facet_grid(.~year)
+
+sydney_weather %>% ggplot(aes(MaxTemp, color = year, fill = year)) + geom_bar()
+
+sydney_weather %>% filter(month == "December") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + facet_grid(.~year) + 
+  ggtitle("Min and Maximum temperature in the month of December from 2008 to 2016 in Sydney")
+install.packages("ggthemes")
+library(ggthemes)
+max(na.omit(weather$MaxTemp))
+
+
+weather %>% filter(MaxTemp == 48.1)
+
+
+
+s_2010 <- weather %>% filter(Location == "Woomera" & month == "January" & year == "2009") %>% mean(MaxTemp, na.rm =T)
+
+str(weather)
+
+mean(weather$MaxTemp, na.rm =T)
+
+max(weather$MaxTemp, na.rm = T)
+
+fun <- lapply(filter mean)
+
+syd_2008 <- sydney_weather %>% filter(sydney_weather$year == "2008") 
+
+syd_2009 <- sydney_weather %>% filter(sydney_weather$year == "2009") 
+
+syd_2010 <- sydney_weather %>% filter(sydney_weather$year == "2010") 
+
+syd_2011 <- sydney_weather %>% filter(sydney_weather$year == "2011")
+
+
+syd_2012 <- sydney_weather %>% filter(sydney_weather$year == "2012")
+
+syd_2013 <- sydney_weather %>% filter(sydney_weather$year == "2013")
+
+syd_2014 <- sydney_weather %>% filter(sydney_weather$year == "2014")
+
+syd_2015 <- sydney_weather %>% filter(sydney_weather$year == "2015")
+
+syd_2016 <- sydney_weather %>% filter(sydney_weather$year == "2016")
+
+
+syd_2017 <- sydney_weather %>% filter(sydney_weather$year == "2017")
+
+mean(syd_2008$MaxTemp, na.rm = T)
+mean(syd_2009$MaxTemp, na.rm = T)
+mean(syd_2010$MaxTemp, na.rm = T)
+mean(syd_2011$MaxTemp, na.rm = T)
+mean(syd_2012$MaxTemp, na.rm = T)
+mean(syd_2013$MaxTemp, na.rm = T)
+mean(syd_2014$MaxTemp, na.rm = T)
+mean(syd_2015$MaxTemp, na.rm = T)
+mean(syd_2017$MaxTemp, na.rm = T)
+mean(syd_2016$MaxTemp, na.rm = T)
+
+
+melbourne_weather <- weather %>% filter(Location == "Melbourne") 
+View(melbourne_weather)
+melbourne_weather %>% ggplot(aes(MaxTemp, MinTemp, color = year)) + geom_point() + facet_grid(.~year) + ggtitle("weather for melbourne every year")
+storage <- numeric(5)
+for(i in 1:5){
+  storage[i]<- i^2
+}
+
+
+
+
+sydney_weather %>% filter(year == "2016") %>% ggplot(aes(MaxTemp, fill = month)) + geom_histogram()
+
+
+max(weather$MaxTemp, na.rm = T)
+
+
+
+max(sydney_weather$MaxTemp, na.rm = T)
+
+sydney_weather %>% ggplot(aes(Temp9am, Temp3pm)) + geom_point() + facet_grid(.~year)
+min(sydney_weather$MinTemp, na.rm = T)
+sort(table(sydney_weather$MaxTemp), decreasing = T)[1:3]
+sydney_weather$month <- factor(sydney_weather$month, levels = month.name)
+sydney_weather %>% ggplot(aes())
+
+getwd()
+
+
+str(sydney_weather$MaxTemp)
+
+
+
+sydney_weather$MaxTemp <- as.factor(sydney_weather$MaxTemp)
+
+as.numeric(sydney_weather$MaxTemp)
+lappl
+
+sydney_weather
+sappl
+
+?apply
+
+
+
+
+syd_2010 %>% ggplot(aes(temp_in, fill = month)) + geom_histogram(binwidth = 0.5, stat = "count") +   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+
+
+syd_2010$month <- as.factor(syd_2010$month, levels = month.name)
+
+
+
+sydney_weather$temp_interval <- cut(sydney_weather$MaxTemp, breaks = seq(0,50, by = 3))
+
+
+View(sydney_weather)
+
+
+sydney_weather$MaxTemp <- as.numeric(sydney_weather$MaxTemp)
+
+sydney_weather_2013_2017 <- sydney_weather %>% filter(year %in% c("2013", "2014", "2015", "2016", "2017"))
+
+View(sydney_weather_2008_2012)
+
+sydney_weather_2013_2017 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar()
+
+unique(sydney_weather$year)
+
+sydne
+
+
+s <- c(24, 27]
+
+
+typeof(sydney_weather$year)
+
+sydney_weather_2008_2012 <- sydney_weather %>% filter(seq(2008, 2013 %in% year))
+sydney_weather_2008_2012 <- sydney_weather %>% filter(year == c("2008", "2009", "2010", "2011", "2012"))
+sydney_weather_2008_2012 <- sydney_weather %>% filter(year %in% c("2008", "2009", "2010", "2011", "2012"))
+sydney_weather_2008_2012
+View(sydney_weather_2008_2012)
+sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar()
+
+
+
+
