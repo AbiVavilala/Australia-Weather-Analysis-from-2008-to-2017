@@ -19,10 +19,15 @@ This Report will provide you easy interpretation of Weather Analysis in Australi
 library(lubridate)
 library(tidyverse)
 library(readxl)
-weather <- read.csv("d:/R data folder/weatherAUS.csv")
+library(readr)
+urlfile <- "https://raw.githubusercontent.com/AbiVavilala/Australian-Weather-Report/main/weatherAUS.csv"
+
+weather <- read.csv(url(urlfile))
 weather$Date <- as.Date(weather$Date)
 weather$year <- year(weather$Date)
 weather$month <- months(weather$Date)
+weather$month <- factor(weather$month, levels = month.name)
+ 
 max(weather$MaxTemp, na.rm = T)
 unique(weather$Location)
 
@@ -31,11 +36,10 @@ unique(weather$Location)
 
 We will look at the minimum and maximum temperature recorded in Sydney for this time period. I will provided Graphical representation so we can clearly see there is a clear increase in Temperature
 
-
-
 ```{r}
+sydney_weather <- weather %>% filter(Location == "Sydney")
+sydney_weather$temp_interval <- cut(sydney_weather$MaxTemp, breaks = seq(0,50, by = 3))
 
-sydney_weather <- weather %>% filter(Location == "Sydney") 
 
 sydney_weather %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + ggtitle("Min and Max temperature recorded in Sydney from 2008 to 2017") + facet_grid(.~year)
 
@@ -107,5 +111,11 @@ you can clearly see the recorded temperature in Sydney every year has increased.
 
 ```{r}
 
+sydney_weather_2008_2012 <- sydney_weather %>% filter(year %in% c("2008", "2009", "2010", "2011", "2012"))
+
+sydney_weather_2013_2017 <- sydney_weather %>% filter(year %in% c("2013", "2014", "2015", "2016", "2017"))
+
+sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in Sydney from 2008 to 2012")
 
 
+sydney_weather_2013_2017 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in sydney from 2013 to 2017")
