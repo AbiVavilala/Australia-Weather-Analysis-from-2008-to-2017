@@ -4,7 +4,10 @@ install.packages("broom", type="binary")
 library(lubridate)
 library(tidyverse)
 library(readxl)
-weather <- read.csv("d:/R data folder/weatherAUS.csv")
+library(readr)
+urlfile <- "https://raw.githubusercontent.com/AbiVavilala/Australian-Weather-Report/main/weatherAUS.csv"
+
+weather <- read.csv(url(urlfile))
 View(weather)
 #maximum temperature in Australia
 max(!is.na(weather$MaxTemp))
@@ -32,14 +35,15 @@ unique(weather$Location)
 
 sydney_weather <- weather %>% filter(Location == "Sydney") 
 View(sydney_weather)
+sydney_weather
 
-max(na.omit(sydney_weather$MaxTemp))
-
-
+#maximum temperature in Sydney from 2008 to 2017
+max(sydney_weather$MaxTemp, na.rm = T)
 
 
 sydney_weather %>% filter(MaxTemp == 45.8)
 
+# we will look at the relationship between Mintemp and Maxtemp
 sydney_weather %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() 
 
 min(sydney_weather$Date)
@@ -146,9 +150,11 @@ max(sydney_weather$MaxTemp, na.rm = T)
 
 sydney_weather %>% ggplot(aes(Temp9am, Temp3pm)) + geom_point() + facet_grid(.~year)
 min(sydney_weather$MinTemp, na.rm = T)
+
+# we will see what's the most common temperature repeated in sydney
 sort(table(sydney_weather$MaxTemp), decreasing = T)[1:3]
 sydney_weather$month <- factor(sydney_weather$month, levels = month.name)
-sydney_weather %>% ggplot(aes())
+ 
 
 getwd()
 
@@ -176,7 +182,7 @@ syd_2010 %>% ggplot(aes(temp_in, fill = month)) + geom_histogram(binwidth = 0.5,
 
 syd_2010$month <- as.factor(syd_2010$month, levels = month.name)
 
-
+#let's divide temperature into interval. this will give us good idea about temp pattern
 
 sydney_weather$temp_interval <- cut(sydney_weather$MaxTemp, breaks = seq(0,50, by = 3))
 
@@ -186,6 +192,7 @@ View(sydney_weather)
 
 sydney_weather$MaxTemp <- as.numeric(sydney_weather$MaxTemp)
 
+#let's make a data table with temp from 2013 to 2017
 sydney_weather_2013_2017 <- sydney_weather %>% filter(year %in% c("2013", "2014", "2015", "2016", "2017"))
 
 View(sydney_weather_2008_2012)
@@ -202,13 +209,21 @@ s <- c(24, 27]
 
 typeof(sydney_weather$year)
 
-sydney_weather_2008_2012 <- sydney_weather %>% filter(seq(2008, 2013 %in% year))
-sydney_weather_2008_2012 <- sydney_weather %>% filter(year == c("2008", "2009", "2010", "2011", "2012"))
+
+#sydney temp from year 2008 to 2012
 sydney_weather_2008_2012 <- sydney_weather %>% filter(year %in% c("2008", "2009", "2010", "2011", "2012"))
 sydney_weather_2008_2012
 View(sydney_weather_2008_2012)
-sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar()
+sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in Sydney from 2008 to 2012")
+
+
+sydney_weather_2013_2017 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in sydney from 2013 to 2017")
+
+is.recursive(sydney_weather)
+sydney
 
 
 
 
+
+abi <- "just check if this change moved to Github"
