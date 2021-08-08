@@ -7,8 +7,6 @@ output: html_document
 
 
 
-![](D:/Australia Weather Analysis/australianflag.png)
-
 
 
 This Report will provide you easy interpretation of Weather Analysis in Australia from 2008 to 2017. The source of this data is from Australian Government Bureau of Meteorology. The observation of weather in Australia is monitored by Australian Government Bureau of Meteorology. We have Data for 49 cities and regions across Australia. however, we will mainly focus on weather in Two Major cities Sydney and Melbourne. Hottest Day recorded durig this period is 48.1.  this was in woomera on 2011 - 01- 25.
@@ -33,6 +31,9 @@ unique(weather$Location)
 
 
 ```
+
+# Temperature analysis for Sydney fromm 2008 to 2017:
+
 
 We will look at the minimum and maximum temperature recorded in Sydney for this time period. I will provided Graphical representation so we can clearly see there is a clear increase in Temperature
 
@@ -115,7 +116,38 @@ sydney_weather_2008_2012 <- sydney_weather %>% filter(year %in% c("2008", "2009"
 
 sydney_weather_2013_2017 <- sydney_weather %>% filter(year %in% c("2013", "2014", "2015", "2016", "2017"))
 
-sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in Sydney from 2008 to 2012")
+sydney_weather_2008_2012 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in Sydney from 2008 to 2012") + geom_text(stat='count', aes(label=..count..), vjust=-1)
 
 
-sydney_weather_2013_2017 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in sydney from 2013 to 2017")
+
+sydney_weather_2013_2017 %>% ggplot(aes(temp_interval, fill = temp_interval)) + geom_bar() + ggtitle("temp recorded in sydney from 2013 to 2017") + geom_text(stat='count', aes(label=..count..), vjust=-1)
+
+
+
+```
+
+
+
+436 days have recorded temperature in between 18-21 in Sydney from 2008 to 2013. 405 days have recorded temperature of 24-27 in 2013 to 2017. days are getting hot. this pattern can be noticed from this data. Days are getting hotter. average temperatures are rising.
+
+
+
+# Temperature in Sydney during the day:
+
+we have data for temperature in Sydney at 9AM and 3PM. lets see if temperature are rising during the day. 
+
+```{r}
+sydney_weather %>% ggplot(aes(Temp9am, Temp3pm)) + geom_point() + facet_grid(.~year)
+```
+
+
+data shows us that Temperature has been on rise every year. Days are getting hotter every year
+
+
+# Rainfall in Sydney from 2008 to 2017:
+
+In the dataset we also have data for rainfall in Sydney from 2008 to 2017. we will analyse the data and see if there is any pattern for rainfall.
+
+
+
+ 
