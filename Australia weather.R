@@ -67,8 +67,7 @@ str(sydney_weather)
 library(lubridate)
 sydney_weather$year <- year(sydney_weather$Date)
 View(sydney_weather)
-sydney_weather$month <- months(sydney_weather$Date)
-sydney_
+
 sydney_weather  %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() + facet_grid(.~year)
 
 sydney_weather %>% ggplot(aes(MaxTemp, color = year, fill = year)) + geom_bar()
@@ -224,6 +223,41 @@ sydney
 
 
 
+View(weather)
+str(weather$month)
+
+# lets convert month into a factor with levels
+
+weather$month <- factor(weather$month, levels = month.name)
 
 
-abi <- "just check if this change moved to Github"
+# lets see max temp in Australia for every month
+
+weather %>%  ggplot(aes(MaxTemp, MinTemp, color = month)) + geom_point() + facet_grid(.~month) + ggtitle("Australian Temperature fromm 2008 to 2017")
+
+#lets see tempearure in sydney for every month
+
+sydney_weather$month <- factor(sydney_weather$month, levels = month.name)
+
+sydney_weather %>% ggplot(aes(MaxTemp, MinTemp, color = month)) + geom_point() + facet_grid(.~month) + ggtitle("Sydney Temperature fromm 2008 to 2017 for each month")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
