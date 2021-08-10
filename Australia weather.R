@@ -241,23 +241,33 @@ sydney_weather$month <- factor(sydney_weather$month, levels = month.name)
 
 sydney_weather %>% ggplot(aes(MaxTemp, MinTemp, color = month)) + geom_point() + facet_grid(.~month) + ggtitle("Sydney Temperature fromm 2008 to 2017 for each month")
 
+mean(syd_2008$Rainfall)
 
 
 
 
+#lets look at weather report for 5 Major cities in Australia 
+
+weather_cities <- weather %>% filter(weather$Location %in% c( "Adelaide", "Sydney", "Melbourne", "Perth", "Brisbane"))
+
+View(weather_cities)
+ 
+
+weather_cities %>% ggplot(aes(MaxTemp, MinTemp, color = Location)) + geom_point() + facet_grid(.~Location)
+
+rain_in_australia <- weather %>% filter(Rainfall > 0)
+View(rain_in_australia)
 
 
+rain_in_syd <- rain_in_australia %>% filter(Location == "Sydney")
+View(rain_in_syd)
+
+max(rain_in_syd$Rainfall)
+
+rain_in_syd %>% filter(Rainfall == 119.4)
 
 
-
-
-
-
-
-
-
-
-
+rain_in_syd %>% ggplot(aes(Rainfall)) + geom_histogram()
 
 
 
