@@ -151,7 +151,7 @@ data shows us that Temperature has been on rise every year. Days are getting hot
 
 In the dataset we also have data for rainfall in Sydney from 2008 to 2017. we will analyse the data and see if there is any pattern for rainfall.
 
-#Average Sydney rainfall every year
+# Average Sydney rainfall every year
 
 Average Rainfall in sydney for year 2008 is `r mean(syd_2008$Rainfall, na.rm = T)` mm
 
@@ -170,6 +170,20 @@ Average Rainfall in Sydney for year 2014 is `r mean(syd_2014$Rainfall, na.rm = T
 Average Rainfall in Sydney for year 2015 is `r mean(syd_2015$Rainfall, na.rm = T)` mm
 
 Average Rainfall in Sydney for year 2016 is `r mean(syd_2016$Rainfall, na.rm = T)` mm
+
+
+
+# Temperature in 5 Major cities in Australia
+
+we will look at Tempearature of 5 Major cities in Australia.
+
+```{r}
+
+weather_cities <- weather %>% filter(weather$Location %in% c( "Adelaide", "Sydney", "Melbourne", "Perth", "Brisbane"))
+
+weather_cities %>% ggplot(aes(MaxTemp, MinTemp, color = Location)) + geom_point() + facet_grid(.~Location) + ggtitle(" Temperature in % major cities in Australia") 
+
+```
 
 
 
