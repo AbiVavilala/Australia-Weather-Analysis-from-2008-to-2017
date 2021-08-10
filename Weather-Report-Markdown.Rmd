@@ -151,6 +151,29 @@ data shows us that Temperature has been on rise every year. Days are getting hot
 
 In the dataset we also have data for rainfall in Sydney from 2008 to 2017. we will analyse the data and see if there is any pattern for rainfall.
 
+#Average Sydney rainfall every year
+
+Average Rainfall in sydney for year 2008 is `r mean(syd_2008$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2009 is `r mean(syd_2009$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2010 is `r mean(syd_2009$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2011 is `r mean(syd_2011$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2012 is `r mean(syd_2012$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2013 is `r mean(syd_2013$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2014 is `r mean(syd_2014$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2015 is `r mean(syd_2015$Rainfall, na.rm = T)` mm
+
+Average Rainfall in Sydney for year 2016 is `r mean(syd_2016$Rainfall, na.rm = T)` mm
 
 
-Average Rainfall in sydney for year 2008 is `r mean(sydney_208)`
+
+
+
+
+ 
