@@ -181,7 +181,7 @@ we will look at Tempearature of 5 Major cities in Australia.
 
 weather_cities <- weather %>% filter(weather$Location %in% c( "Adelaide", "Sydney", "Melbourne", "Perth", "Brisbane"))
 
-weather_cities %>% ggplot(aes(MaxTemp, MinTemp, color = Location)) + geom_point() + facet_grid(.~Location) + ggtitle(" Temperature in % major cities in Australia") 
+weather_cities %>% ggplot(aes(MaxTemp, MinTemp, color = Location)) + geom_point() + facet_grid(.~Location) + ggtitle(" Temperature in 5 major cities in Australia") 
 
 ```
 

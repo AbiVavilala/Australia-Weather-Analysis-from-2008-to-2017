@@ -5,6 +5,7 @@ library(lubridate)
 library(tidyverse)
 library(readxl)
 library(readr)
+library(ggthemes)
 urlfile <- "https://raw.githubusercontent.com/AbiVavilala/Australian-Weather-Report/main/weatherAUS.csv"
 
 weather <- read.csv(url(urlfile))
@@ -19,12 +20,18 @@ c <-  na.omit(weather$MaxTemp)
 weather$Date <- as.Date(weather$Date)
 weather$year <- year(weather$Date)
 weather$month <- months(weather$Date)
+weather$month <- factor(weather$month, levels = month.name)
+weather$temp_interval <- cut(weather$MaxTemp, breaks = seq(0,50, by = 3))
+sydney_weather$temp_interval <- cut(sydney_weather$MaxTemp, breaks = seq(0,50, by = 3))
+unique(weather$Location)
+
 !is.na()
 c <- omit
 View(c)
 max(weather$Date)
 max(c)
-
+min(weather$year)
+max(weather$year)
 weather %>% filter(Location == "Albury") %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point()
 
 mean(c)
@@ -269,5 +276,14 @@ rain_in_syd %>% filter(Rainfall == 119.4)
 
 rain_in_syd %>% ggplot(aes(Rainfall)) + geom_histogram()
 
+summary(sydney_weather)
+
+sydney_weather %>% ggplot(aes(MaxTemp, MinTemp, color = year)) + geom_point()
 
 
+weather %>% filter(Location == "Sydney" & year == 2009) %>% ggplot(aes(MaxTemp, MinTemp)) + geom_point() 
+
+
+
+str(unique(weather$year))
+str(weather$year)
